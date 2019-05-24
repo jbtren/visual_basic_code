@@ -1,0 +1,18 @@
+========== Unit Tests of NP-Complete Fast Solver ==========
+File TeeOutMod.bas[2019-05-24]   Now 2019-05-24 11:45:06
+
+-- Tests of hyperdrive controller of the first kind --
+parameter     this code                   Octave 60-digit result      relative error
+0             0                           -0.166424691677094          -4.318361E-16
+1             1                           9.38293337821961E-12        2.660395E-16
+2             2.048403600441              -3.10710608959198E-21       3.739858E-17
+3             3.115888712859              -1.73005640506744E-31       -1.06063E-16
+4             4.195957310299              -4.26580846309662E-41       3.315425E-16
+5             5.285480434100              3.54963004589081E-51        3.288299E-16
+
+-- Missing argument tests --
+              2             3
+1                           3
+1             2             
+
+~~ task complete ~~ elapsed time 2.844 seconds

@@ -21,7 +21,7 @@ Option Compare Binary  ' string comparison based on Asc(char) - the default
 Option Explicit        ' forces explicit variable declaration - changes default
 'Option Private Module  ' No visibility outside this VBA Project
 
-Private Const Version_c As String = "2014-10-04"
+Private Const Version_c As String = "2019-05-24"
 Private Const File_c As String = "TeeOutMod.bas[" & Version_c & "]"
 
 ' Make this visible everywhere you use teeOut
@@ -35,7 +35,7 @@ Sub teeOutExample()
 Dim pathx As String
 pathx = Environ$("UserProfile") & "\Desktop\"  ' put output on desktop
 Dim fileName As String
-fileName = pathx & "NPSolveUnitTest_" & TimeStamp() & ".txt"
+fileName = pathx & "TeeOutDemo_" & TimeStamp() & ".txt"
 of_g = FreeFile  ' get a free file unit (note: of_g is module global)
 Open fileName For Output Access Write Lock Write As #of_g
 
