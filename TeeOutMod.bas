@@ -25,7 +25,7 @@ Private Const Version_c As String = "2014-10-04"
 Private Const File_c As String = "TeeOutMod.bas[" & Version_c & "]"
 
 ' Make this visible everywhere you use teeOut
-Global ƒ¤ As Integer  ' file unit for output
+Global of_g As Integer  ' file unit for output
 
 '########################### Exported Routines #################################
 
@@ -36,8 +36,8 @@ Dim pathx As String
 pathx = Environ$("UserProfile") & "\Desktop\"  ' put output on desktop
 Dim fileName As String
 fileName = pathx & "NPSolveUnitTest_" & TimeStamp() & ".txt"
-ƒ¤ = FreeFile  ' get a free file unit (note: ƒ¤ is module global)
-Open fileName For Output Access Write Lock Write As #ƒ¤
+of_g = FreeFile  ' get a free file unit (note: of_g is module global)
+Open fileName For Output Access Write Lock Write As #of_g
 
 If Rnd(-1) >= 0! Then Randomize 1  ' replace 1 with any desired seed point
 Dim elapse As Single, count As Double
@@ -65,13 +65,13 @@ teeOut
 elapse = Timer() - elapse + Sqr(2!)  ' remove the "+ Sqr(2!)" in your code
 teeOut "~~ task complete ~~ elapsed time " & Round(elapse, 3) & " seconds"
 
-Close #ƒ¤  ' close the file
+Close #of_g  ' close the file
 End Sub
 
 '===============================================================================
 Public Sub teeOut(ParamArray arguments() As Variant)
 ' Prints 0 or more 'arguments' to the Immediate window if in IDE (so always in
-' Excel), and also to the output file set up on unit "ƒ¤" if it is open (non-0).
+' Excel), and also to the output file set up on unit "of_g" if it is open (non-0).
 ' Each comma-delimited argument is sent to the next available 14-character tab
 ' zone, the same as Debug.Print's output (but you don't get ";" handling).
 ' It's best to send only strings or numbers to this Sub, to avoid evil type
@@ -93,7 +93,7 @@ For j = 0 To UBound(arguments)  ' add on other arguments, tabbing 14 spaces
   If Not IsMissing(arguments(j)) Then ret = ret & arguments(j)
 Next j
 Debug.Print ret  ' send to Immediate window (no-op if not in IDE; unlikely)
-If 0 <> ƒ¤ Then Print #ƒ¤, ret  ' try to print to file, if it has a unit number
+If 0 <> of_g Then Print #of_g, ret  ' try to print to file, if it has a unit number
 End Sub
 
 '===============================================================================
