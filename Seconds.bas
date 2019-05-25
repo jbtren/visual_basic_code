@@ -1,9 +1,9 @@
-Attribute VB_Name = "Seconds_"
+Attribute VB_Name = "Seconds_" ' underscore avoids name clash
 '
 '###############################################################################
 '# Visual Basic 6 source file "Seconds.bas"
 '#
-'# Timing with microsecond accuracy (more or less).
+'# Routines allowing timing with microsecond accuracy (more or less).
 '#
 '# John Trenholme - started 4 Jan 2004.
 '###############################################################################
@@ -17,12 +17,22 @@ Attribute VB_Name = "Seconds_"
 
 Option Explicit
 
-Private Const Version_c As String = "2007-01-23"
+' Module-global Const values (convention: starts with upper-case; suffix "_c")
 
+' Date of latest revision to this code, as a string in the format "yyyy-mm-dd"
+Private Const Version_c As String = "2019-05-24"
+
+#If VBA7 Then
+Private Declare PtrSafe Function QueryPerformanceFrequency _
+  Lib "kernel32" (f As Currency) As Boolean ' Currency = 64-bit = LARGE_INTEGER
+Private Declare PtrSafe Function QueryPerformanceCounter _
+  Lib "kernel32" (p As Currency) As Boolean
+#Else ' Not VBA7
 Private Declare Function QueryPerformanceFrequency _
   Lib "kernel32" (f As Currency) As Boolean
 Private Declare Function QueryPerformanceCounter _
   Lib "kernel32" (p As Currency) As Boolean
+#End If ' VBA7
 
 '===============================================================================
 ' Return number of seconds since first call to this routine. A return of -86400
@@ -108,8 +118,10 @@ secondsJitter = t(1& + c_N \ 2&)
 End Function
 
 '===============================================================================
-' Return a string with the date of the latest revision to this file
-Public Function secondsVersion() As String
+' Return the date of the latest revision to this code, as a string in the
+' format "yyyy-mm-dd"
+' The Optional argument allows control of when this is called from Excel
+Public Function secondsVersion(Optional ByVal trigger As Variant) As String
 secondsVersion = Version_c
 End Function
 
