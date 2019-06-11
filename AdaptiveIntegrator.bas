@@ -85,7 +85,7 @@ Private Const File_ As String = "AdaptiveIntegrator[" & Version_ & "]."
 Private Const BadArg_ As Long = 5&  ' = "Invalid procedure call or argument"
 Private Const BadSub_ As Long = 9&  ' = "Subscript out of range"
 Private Const EOL_ As String = vbNewLine  ' shorthand for end-of-line char pair
-Private Const Pi_ As Double = 3.1415926 + 5.358979324E-08  ' good to last bit
+Private Const Pi_ As Double = 3.1415926 + 5.358979324E-08  ' good to 53 bits
 
 ' Set this True to include unit-test code, False to exclude it.
 #Const UnitTest_ = True

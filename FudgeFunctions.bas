@@ -16,7 +16,7 @@ Option Explicit
 
 Public Const FudgeFunctionsVersion As String = "2006-01-25"
 
-Private Const c_Pi As Double = 3.1415926 + 5.35897932E-08
+Private Const c_Pi As Double = 3.1415926 + 5.35897932E-08 ' good to 53 bits
 
 '===============================================================================
 Function smoothInt(ByVal x As Double, _

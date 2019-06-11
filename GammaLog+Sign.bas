@@ -3,7 +3,7 @@ Public Function gammaLog( _
   ByVal x As Double) _
 As Double
 Attribute gammaLog.VB_Description = "Natural logarithm of the absolute value of the Gamma function g(x) = (x-1)! at the supplied argument. To get Gamma(x), use gammaSign(x) * Exp(gammaLog(x)), but note that this will overflow if x > 171.6"
-' Absolute value of the logarithm of the Gamma function g(x) = (x-1)!.
+' Natural logarithm of the absolute value of the Gamma function g(x) = (x-1)!.
 '
 ' To get Gamma(x), use gammaSign(x) * Exp(gammaLog(x)), but note that this
 ' will overflow if x > 171.6
@@ -53,3 +53,5 @@ If x <= 0# Then
 End If
 gammaSign = Sgn(x)
 End Function
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~ end of file ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

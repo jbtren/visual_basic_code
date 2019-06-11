@@ -19,6 +19,7 @@ Attribute VB_Name = "SVD"
 '#
 '# Based on routines in "Numerical Recipes", which seem to be direct
 '# translations of routines in EISPACK (see http://www.netlib.org/eispack/).
+'# see references below
 '#
 '# Started 2007-11-19
 '#
@@ -68,9 +69,32 @@ Sub svdDecompose( _
 ' Linear problems aMat * x = rhs can then be solved for 'x' by calling
 ' "svdSolve". Note that this routine adapts to the input dimensions of 'aMat',
 ' so you can use any base you want as long as it's the same for all the arrays.
+'
+' See unit test code for usage examples.
+'
+' Method:
+'  Householder bidiagonalization and a variant of the QR algoritm
+'  are used.  See references.
+'
+' References:
+'  This Visual Basic version is an adaptation of the FORTRAN 77 reference [1],
+'  which appears to be a FORTRAN 77 adaptation of the FORTRAN 66 code of
+'  refernce [2], which is an adaptation of the ALGOL procedure of reference [3].
+'
+'  [1] NUMERICAL RECIPIES IN FORTRAN 77: THE ART OF SCIENTIFIC COMPUTING,
+'  Cambridge University Press, 1986-1992
+'
+'  [2] Forsythe, G., Malcom, M., Moler, C., COMPUTER METHODS FOR
+'  MATHEMATICAL COMPUTATIONS, 1977, Prentice-Hall, Inc., NJ 07632
+'
+'  [3] Golub, G.H., and C. Reinsch, "Singular value decomposition and least
+'  squares solutions." in J. H. Wilkinson and C. Reinsch, HANDBOOK FOR
+'  AUTOMATIC COMPUTERS, vol II: "Linear Algebra", Heidelburg: Springer
+'
 
 Const c_R As String = "svdDecompose"  ' name of this routine
-' the global quantity RV will have been set by the highest-level routine
+' the global quantity RV ("Release Version") will have been set by the
+' highest-level routine
 If RV Then On Error GoTo TidyUp  ' if release version, set to report problem
 
 ' get dimensions (M,N) of input matrix 'aMat'
